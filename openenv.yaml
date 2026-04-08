@@ -1,0 +1,17 @@
+spec_version: "1.0"
+environment:
+  name: "AI Email Assistant"
+  description: "A simulated email inbox management task for OpenEnv."
+  tags:
+    - openenv
+    - email
+    - nlp
+    - assistant
+  entrypoint: "env:EmailAssistantEnv"
+tasks:
+  - name: "easy"
+    description: "Classify incoming emails as spam, important, or normal."
+  - name: "medium"
+    description: "Generate appropriate replies to incoming emails."
+  - name: "hard"
+    description: "Prioritize, schedule meetings, and reply to urgent emails."
