@@ -1,17 +1,52 @@
+# OpenEnv specification metadata
+# Validates with: openenv validate
+
 spec_version: "1.0"
+
 environment:
   name: "AI Email Assistant"
-  description: "A simulated email inbox management task for OpenEnv."
+  description: >
+    A simulated email inbox management environment for evaluating AI agents
+    on real-world email triage tasks including classification, reply generation,
+    priority assignment, and meeting scheduling.
+  version: "1.0.0"
   tags:
     - openenv
     - email
     - nlp
     - assistant
-  entrypoint: "env:EmailAssistantEnv"
+    - productivity
+  entrypoint: "app:app"
+
 tasks:
   - name: "easy"
+    difficulty: "easy"
     description: "Classify incoming emails as spam, important, or normal."
+    objective: >
+      Read each email and assign the correct classification label from:
+      'spam', 'important', or 'normal'. Score is the fraction of correct labels.
+    expected_output: "Each email classified with the correct label."
+    grader: "graders:grade_easy"
+
   - name: "medium"
-    description: "Generate appropriate replies to incoming emails."
+    difficulty: "medium"
+    description: "Generate contextually appropriate replies to incoming emails."
+    objective: >
+      For each email, compose a professional and relevant reply. The reply must
+      be at least 5 words long and should reference the email content.
+    expected_output: "Each email has a coherent, contextually relevant reply."
+    grader: "graders:grade_medium"
+
   - name: "hard"
-    description: "Prioritize, schedule meetings, and reply to urgent emails."
+    difficulty: "hard"
+    description: "Classify, prioritize, schedule, and reply to emails."
+    objective: >
+      For each email: (1) classify as spam/important/normal,
+      (2) assign the correct priority level (low/medium/high),
+      (3) schedule a meeting if required (picking one of the offered time slots),
+      and (4) reply if required with a relevant response.
+    expected_output: >
+      Each email fully processed with correct classification, priority,
+      scheduled meeting time (where applicable), and a relevant reply
+      (where applicable).
+    grader: "graders:grade_hard"
